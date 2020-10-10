@@ -2,24 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
+    android:id="@+id/navigation"
+    app:startDestination="@id/listSubjectsFragment">
     <fragment
-        android:id="@+id/registerSubjectFragment2"
+        android:id="@+id/registerSubjectFragment"
         android:name="com.example.parcial1.view.ui.fragments.RegisterSubjectFragment"
         android:label="fragment_register_subject"
-        tools:layout="@layout/fragment_register_subject" >
-        <action
-            android:id="@+id/action_registerSubjectFragment2_to_registerQualificationsFragment"
-            app:destination="@id/registerQualificationsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register_subject" />
     <fragment
         android:id="@+id/registerQualificationsFragment"
         android:name="com.example.parcial1.view.ui.fragments.RegisterQualificationsFragment"
         android:label="fragment_register_qualifications"
-        tools:layout="@layout/fragment_register_qualifications" />
+        tools:layout="@layout/fragment_register_qualifications" >
+        <action
+            android:id="@+id/action_registerQualificationsFragment_to_registerActivityFragment"
+            app:destination="@id/registerActivityFragment" />
+    </fragment>
     <fragment
         android:id="@+id/summaryFragment"
         android:name="com.example.parcial1.view.ui.fragments.SummaryFragment"
         android:label="fragment_summary"
         tools:layout="@layout/fragment_summary" />
+    <fragment
+        android:id="@+id/listSubjectsFragment"
+        android:name="com.example.parcial1.view.ui.fragments.listSubjectsFragment"
+        android:label="fragment_list_subjects"
+        tools:layout="@layout/fragment_list_subjects" >
+        <action
+            android:id="@+id/action_listSubjectsFragment_to_registerQualificationsFragment"
+            app:destination="@id/registerQualificationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerActivityFragment"
+        android:name="com.example.parcial1.view.ui.fragments.registerActivityFragment"
+        android:label="fragment_register_activity"
+        tools:layout="@layout/fragment_register_activity" />
 </navigation>

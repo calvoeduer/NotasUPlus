@@ -21,11 +21,11 @@
             android:textColor="@android:color/black"
             android:gravity="center_horizontal" />
 
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="11dp">
 
-        </view>
+        </View>
 
         <LinearLayout
             android:layout_width="match_parent"

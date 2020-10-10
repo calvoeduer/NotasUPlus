@@ -17,7 +17,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:src="@drawable/ic_baseline_work_24">
+                android:src="@drawable/ic_baseline_assignment_24">
             </ImageView>
         </LinearLayout>
         <LinearLayout
@@ -30,7 +30,7 @@
                 android:id="@+id/subject_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Materia: "
+                android:text="Actividad:  "
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold">
@@ -39,19 +39,19 @@
                 android:id="@+id/subject_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Codido: ">
+                android:text="Nombre: ">
             </TextView>
             <TextView
                 android:id="@+id/subject_qualifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Calificaciones: 1,2,3">
+                android:text="Nota: ">
             </TextView>
             <TextView
                 android:id="@+id/subject_definitive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Definitiva: ">
+                android:text="Porcentaje: ">
             </TextView>
         </LinearLayout>
     </LinearLayout>
