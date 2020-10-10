@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.ui.fragments.RegisterSubjectFragment">
 
     <LinearLayout
@@ -31,11 +32,59 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/codeSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Codigo"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true"
+                app:helperText = "Codigo de materia">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameSubject"
+                android:hint="Nombre"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true"
+                app:helperText="Nombre de asignatura">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/registrar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registrar"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:strokeColor="@color/colorAccent"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="center">
+
+
+                </Button>
 
 
 
 
         </LinearLayout>
+
+
 
 
     </LinearLayout>
