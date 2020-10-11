@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerActivityFragment"
-        android:name="com.example.parcial1.view.ui.fragments.registerActivityFragment"
+        android:name="com.example.parcial1.view.ui.fragments.RegisterActivityFragment"
         android:label="fragment_register_activity"
         tools:layout="@layout/fragment_register_activity" />
 </navigation>

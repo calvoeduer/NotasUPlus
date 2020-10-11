@@ -29,6 +29,7 @@
         </TextView>
 
         <RadioGroup
+            android:id="@+id/radioCortes"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,13 +65,13 @@
 
         </RadioGroup>
 
-        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
 
             <Button
-                android:id="@+id/registrar_button"
+                android:id="@+id/add_actividad_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Añadir actividad"
@@ -80,9 +81,23 @@
                 android:layout_gravity="center">
 
             </Button>
+            <TextView
+                android:id="@+id/porcentaje_completo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Porcentaje: (CORTE)"
+                android:gravity="center"
+
+                android:layout_margin="5dp">
+
+            </TextView>
 
 
-        </LinearLayout>
+
+
+
+
+
 
 
 

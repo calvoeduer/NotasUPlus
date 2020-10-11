@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_height="wrap_content"
+<LinearLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:orientation="vertical">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:src="@drawable/ic_baseline_work_24">
             </ImageView>
         </LinearLayout>
@@ -47,12 +47,49 @@
                 android:layout_height="wrap_content"
                 android:text="Calificaciones: 1,2,3">
             </TextView>
+
             <TextView
                 android:id="@+id/subject_definitive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Definitiva: ">
             </TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/delete_subject"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:text="eliminar"
+                    app:backgroundTint="@android:color/darker_gray"
+                    app:strokeColor="@color/colorAccent"
+                    android:textColor="@android:color/white"
+                    android:layout_marginLeft="60dp"
+                    android:textSize="10dp"
+
+
+                    android:layout_gravity="center">
+                </Button>
+                <Button
+                    android:id="@+id/edit_subject"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:text="Editar"
+                    android:textSize="10dp"
+                    app:backgroundTint="@android:color/darker_gray"
+                    app:strokeColor="@color/colorAccent"
+                    android:textColor="@android:color/white"
+
+
+                    android:layout_gravity="center">
+                </Button>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.parcial1.model
 
-class Subject(val code: String, val name: String) {
+import java.io.Serializable
+
+class Subject(val code: String, val name: String) : Serializable {
     val qualifications : ArrayList<Qualification> = ArrayList(3)
 
     init {
@@ -12,7 +14,7 @@ class Subject(val code: String, val name: String) {
     val definitive : Float
         get() {
             if (qualifications.size == 0)
-                return 0F
+                return 0.0F
             return qualifications.map { q -> q.total }.reduce { acc, fl -> acc + fl }
         }
 

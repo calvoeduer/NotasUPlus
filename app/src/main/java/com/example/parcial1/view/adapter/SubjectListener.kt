@@ -1,5 +1,8 @@
 package com.example.parcial1.view.adapter
 
-interface SubjectListener {    fun oneSubjectTap(subject: com.example.parcial1.model.Subject, index: Int)
+import com.example.parcial1.model.Subject
+
+interface SubjectListener {
+    fun oneSubjectTap(subject: Subject , index: Int)
 
 }

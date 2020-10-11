@@ -1,8 +1,9 @@
 package com.example.parcial1.model
 
 import androidx.annotation.FloatRange
+import java.io.Serializable
 
-class Activity {
+class Activity : Serializable{
     var id: Int = 0
     var name: String = ""
 
