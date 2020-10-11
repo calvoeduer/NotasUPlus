@@ -13,11 +13,15 @@ class Qualification() {
 
     val total: Float
         get() {
+            if (activities.size == 0)
+                return 0F
             return activities.map { a -> a.percent * a.note }.reduce { acc, fl -> acc + fl  }
 
         }
     private val totalPercent: Float
         get() {
+            if (activities.size == 0)
+                return 0F
             return activities.map { a -> a.percent }.reduce { acc, fl -> acc + fl }
         }
     fun addActivity(activity: Activity): Boolean {

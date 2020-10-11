@@ -9,9 +9,10 @@ import com.example.parcial1.R
 import com.example.parcial1.model.Subject
 
 class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerView.Adapter<SubjectAdapter.ViewHolder>() {
+
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        val code :TextView = itemView.findViewById(R.id.codeSubject)
-        val name : TextView = itemView.findViewById(R.id.nameSubject)
+        val code :TextView = itemView.findViewById(R.id.subject_code)
+        val name : TextView = itemView.findViewById(R.id.subject_name)
         val qualifications: TextView = itemView.findViewById(R.id.subject_qualifications)
         val definitive: TextView = itemView.findViewById(R.id.subject_definitive)
 
