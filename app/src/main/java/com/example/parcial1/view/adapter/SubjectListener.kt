@@ -1,7 +1,5 @@
 package com.example.parcial1.view.adapter
 
-import javax.security.auth.Subject
-
-interface SubjectListener {    fun oneSubjectTap(subject: Subject, index : Int)
+interface SubjectListener {    fun oneSubjectTap(subject: com.example.parcial1.model.Subject, index: Int)
 
 }
