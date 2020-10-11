@@ -1,16 +1,21 @@
 package com.example.parcial1.view.ui.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial1.R
+import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Subject
 import com.example.parcial1.view.adapter.ActivityAdapter
+import com.example.parcial1.view.adapter.ActivityListener
+import com.example.parcial1.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.activity_item.*
 import kotlinx.android.synthetic.main.fragment_register_activity.*
 import kotlinx.android.synthetic.main.fragment_register_qualifications.*
@@ -33,12 +38,13 @@ return inflater.inflate(R.layout.fragment_register_qualifications, container, fa
 
  *
  */
-class RegisterQualificationsFragment : Fragment() {
+class RegisterQualificationsFragment : Fragment(), ActivityListener {
 
     private lateinit var subject: Subject
     private var currentCort: Int = 0
 
     private lateinit var activityAdapter: ActivityAdapter
+    private lateinit var subjectViewModel: SubjectViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +57,8 @@ class RegisterQualificationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activityAdapter = ActivityAdapter()
+        subjectViewModel = SubjectViewModel(view.context)
+        activityAdapter = ActivityAdapter(this)
 
         subject = arguments?.getSerializable("subject") as Subject
         registrar_actividades.apply {
@@ -79,7 +86,8 @@ class RegisterQualificationsFragment : Fragment() {
             if (currentCort != 0) {
                 val qualification = subject.qualifications[currentCort - 1]
                 activityAdapter.updateData(qualification.activities)
-                porcentaje_completo.text = "Porcentaje completo: ${qualification.totalActivitiesPercent * 100}%"
+                porcentaje_completo.text =
+                    "Porcentaje completo: ${qualification.totalActivitiesPercent * 100}%"
             }
         }
 
@@ -89,8 +97,27 @@ class RegisterQualificationsFragment : Fragment() {
                 findNavController().navigate(R.id.registerActivityFragment, bundle)
             }
         }
+
+
     }
 
+    override fun onActivityTap(activity: Activity, position: Int) {
+        TODO("Not yet implemented")
+        //editar
+    }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onActivityDeleteButtonTap(activity: Activity, position: Int) {
+        if (subjectViewModel.deleteActivity(activity.id)) {
+            val qualification = subject.qualifications[currentCort - 1]
+            qualification.activities.removeIf { it.id == activity.id }
+            activityAdapter.updateData(qualification.activities)
+            porcentaje_completo.text =
+                "Porcentaje completo: " + qualification.totalActivitiesPercent * 100
+
+        }
+
+
+    }
 
 }

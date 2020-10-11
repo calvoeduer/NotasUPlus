@@ -12,12 +12,12 @@ import com.example.parcial1.model.Activity
 
 
 
-class ActivityAdapter : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
+class ActivityAdapter(private val activityListener: ActivityListener) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name: TextView = itemView.findViewById(R.id.subject_name_activity)
             val note: TextView = itemView.findViewById(R.id.activity_nota)
             val percent: TextView = itemView.findViewById(R.id.porcentaje_activity)
-           // val button: Button = itemView.findViewById(R.id.registrar_actividad_button)
+            val buttondeleteactivity: Button = itemView.findViewById(R.id.delete_activity)
         }
 
         var activities = ArrayList<Activity>()
@@ -32,6 +32,9 @@ class ActivityAdapter : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
             holder.name.text = activity.name
             holder.note.text = "Note: ${activity.note}"
             holder.percent.text = "Percent: ${activity.percent * 100}%"
+            holder.buttondeleteactivity.setOnClickListener {
+                activityListener.onActivityDeleteButtonTap(activity, position)
+            }
         }
 
         override fun getItemCount(): Int {
