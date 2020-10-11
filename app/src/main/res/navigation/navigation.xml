@@ -22,11 +22,6 @@
             app:destination="@id/editActivityFragment" />
     </fragment>
     <fragment
-        android:id="@+id/summaryFragment"
-        android:name="com.example.parcial1.view.ui.fragments.SummaryFragment"
-        android:label="fragment_summary"
-        tools:layout="@layout/fragment_summary" />
-    <fragment
         android:id="@+id/listSubjectsFragment"
         android:name="com.example.parcial1.view.ui.fragments.listSubjectsFragment"
         android:label="fragment_list_subjects"
@@ -42,7 +37,11 @@
         android:id="@+id/registerActivityFragment"
         android:name="com.example.parcial1.view.ui.fragments.RegisterActivityFragment"
         android:label="fragment_register_activity"
-        tools:layout="@layout/fragment_register_activity" />
+        tools:layout="@layout/fragment_register_activity" >
+        <action
+            android:id="@+id/action_registerActivityFragment_to_registerSubjectFragment"
+            app:destination="@id/registerSubjectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/updateSubjectFragment"
         android:name="com.example.parcial1.view.ui.fragments.UpdateSubjectFragment"

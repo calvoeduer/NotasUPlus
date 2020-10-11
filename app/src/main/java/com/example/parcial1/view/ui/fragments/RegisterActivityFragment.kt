@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.DialogFragment.STYLE_NORMAL
+import androidx.navigation.fragment.findNavController
 import com.example.parcial1.R
 import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Qualification
@@ -83,6 +84,7 @@ class RegisterActivityFragment : DialogFragment() {
         if (qualification.addActivity(activity)) {
             if (subjectViewModel.saveActivity(activity, qualification.id)) {
                 dismiss()
+                findNavController().navigate(R.id.listSubjectsFragment)
             }
         }
     }

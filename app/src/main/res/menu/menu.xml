@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/listSubjectsFragment" android:title="Inicio" android:icon="@drawable/ic_baseline_home_24"></item>
     <item android:id="@+id/registerSubjectFragment" android:title="Registrar" android:icon="@drawable/ic_baseline_add_24"></item>
-    <item android:id="@+id/summaryFragment" android:title="Estadisticas" android:icon="@drawable/ic_baseline_format_list_numbered_rtl_24"></item>
+
 
 </menu>
