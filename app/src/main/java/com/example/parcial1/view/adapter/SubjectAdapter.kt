@@ -3,6 +3,7 @@ package com.example.parcial1.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcial1.R
@@ -15,6 +16,9 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
         val name : TextView = itemView.findViewById(R.id.subject_name)
         val qualifications: TextView = itemView.findViewById(R.id.subject_qualifications)
         val definitive: TextView = itemView.findViewById(R.id.subject_definitive)
+        val buttonDeleteSubject : Button = itemView.findViewById(R.id.delete_subject)
+        val buttonUpdateSubject: Button = itemView.findViewById(R.id.edit_subject_item)
+
 
     }
 
@@ -30,6 +34,8 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
         holder.name.text = subject.name
         holder.qualifications.text = "Calificaciones: ${subject.qualifications[0].total}, ${subject.qualifications[1].total}, ${subject.qualifications[2].total}"
         holder.definitive.text = "Definitiva: ${subject.definitive}"
+        holder.buttonDeleteSubject.setOnClickListener { subjectListener.onSubjectDeleteButtonTap(subject, position) }
+        holder.buttonUpdateSubject.setOnClickListener { subjectListener.onUpdateSubjectButtontap(subject, position) }
 
         holder.itemView.setOnClickListener {
             subjectListener.oneSubjectTap(subject, position)

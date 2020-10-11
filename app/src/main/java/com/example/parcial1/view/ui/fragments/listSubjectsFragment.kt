@@ -11,11 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial1.R
+import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Subject
 import com.example.parcial1.view.adapter.SubjectAdapter
 import com.example.parcial1.view.adapter.SubjectListener
 import com.example.parcial1.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_list_subjects.*
+import kotlinx.android.synthetic.main.fragment_register_qualifications.*
 import kotlin.reflect.KVariance
 
 
@@ -65,5 +67,16 @@ class listSubjectsFragment : Fragment(), SubjectListener {
         val bundle = bundleOf("subject" to subject)
         findNavController().navigate(R.id.registerQualificationsFragment, bundle)
     }
+
+    override fun onSubjectDeleteButtonTap(subject: Subject, position: Int) {
+      if (subjectViewModel.deleteSubject(subject.code))
+          subjectViewModel.refresh()
+    }
+
+    override fun onUpdateSubjectButtontap(subject: Subject, index: Int) {
+        val bundle = bundleOf("subject" to subject)
+        findNavController().navigate(R.id.updateSubjectFragment, bundle)
+    }
+
 
 }

@@ -140,4 +140,8 @@ class QualificationDatabase(private val context: Context) {
     fun deleteActivity(activityCode: Int): Boolean {
         return databaseConnection.delete(ACTIVITIES_TABLE_NAME, "id = ?", arrayOf(activityCode.toString())) > 0
     }
+
+    fun deleteSubject(subjectCode: String): Boolean{
+        return databaseConnection.delete(SUBJECTS_TABLE_NAME, "code = ?", arrayOf(subjectCode.toString())) > 0
+    }
 }

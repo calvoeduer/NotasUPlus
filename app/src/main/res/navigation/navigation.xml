@@ -31,10 +31,18 @@
         <action
             android:id="@+id/action_listSubjectsFragment_to_registerQualificationsFragment"
             app:destination="@id/registerQualificationsFragment" />
+        <action
+            android:id="@+id/action_listSubjectsFragment_to_updateSubjectFragment"
+            app:destination="@id/updateSubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerActivityFragment"
         android:name="com.example.parcial1.view.ui.fragments.RegisterActivityFragment"
         android:label="fragment_register_activity"
         tools:layout="@layout/fragment_register_activity" />
+    <fragment
+        android:id="@+id/updateSubjectFragment"
+        android:name="com.example.parcial1.view.ui.fragments.UpdateSubjectFragment"
+        android:label="fragment_update_subject"
+        tools:layout="@layout/fragment_update_subject" />
 </navigation>

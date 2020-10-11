@@ -76,7 +76,7 @@
                     android:layout_gravity="center">
                 </Button>
                 <Button
-                    android:id="@+id/edit_subject"
+                    android:id="@+id/edit_subject_item"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
                     android:text="Editar"
