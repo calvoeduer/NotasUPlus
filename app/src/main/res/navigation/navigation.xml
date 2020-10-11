@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_registerQualificationsFragment_to_registerActivityFragment"
             app:destination="@id/registerActivityFragment" />
+        <action
+            android:id="@+id/action_registerQualificationsFragment_to_editActivityFragment"
+            app:destination="@id/editActivityFragment" />
     </fragment>
     <fragment
         android:id="@+id/summaryFragment"
@@ -45,4 +48,9 @@
         android:name="com.example.parcial1.view.ui.fragments.UpdateSubjectFragment"
         android:label="fragment_update_subject"
         tools:layout="@layout/fragment_update_subject" />
+    <fragment
+        android:id="@+id/editActivityFragment"
+        android:name="com.example.parcial1.view.ui.fragments.EditActivityFragment"
+        android:label="fragment_edit_activity"
+        tools:layout="@layout/fragment_edit_activity" />
 </navigation>

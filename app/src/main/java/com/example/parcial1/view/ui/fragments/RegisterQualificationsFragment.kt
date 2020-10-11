@@ -120,4 +120,9 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
 
     }
 
+    override fun onUpdateActivityButtonTap(activity: Activity, position: Int) {
+        val bundle = bundleOf("activity" to activity)
+        findNavController().navigate(R.id.editActivityFragment, bundle)
+    }
+
 }

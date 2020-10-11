@@ -18,6 +18,7 @@ class ActivityAdapter(private val activityListener: ActivityListener) : Recycler
             val note: TextView = itemView.findViewById(R.id.activity_nota)
             val percent: TextView = itemView.findViewById(R.id.porcentaje_activity)
             val buttondeleteactivity: Button = itemView.findViewById(R.id.delete_activity)
+            val buttonupdateactivity: Button = itemView.findViewById(R.id.edit_activity_item)
         }
 
         var activities = ArrayList<Activity>()
@@ -32,9 +33,8 @@ class ActivityAdapter(private val activityListener: ActivityListener) : Recycler
             holder.name.text = activity.name
             holder.note.text = "Note: ${activity.note}"
             holder.percent.text = "Percent: ${activity.percent * 100}%"
-            holder.buttondeleteactivity.setOnClickListener {
-                activityListener.onActivityDeleteButtonTap(activity, position)
-            }
+            holder.buttondeleteactivity.setOnClickListener { activityListener.onActivityDeleteButtonTap(activity, position) }
+            holder.buttonupdateactivity.setOnClickListener { activityListener.onUpdateActivityButtonTap(activity, position) }
         }
 
         override fun getItemCount(): Int {
