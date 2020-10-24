@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.parcial1.R
 import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Qualification
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.viewmodel.SubjectViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_register_activity.*
@@ -80,13 +81,21 @@ class RegisterActivityFragment : DialogFragment() {
         activity.name = nameText
         activity.note = noteText
         activity.percent = percentText
+        activity.qualificationId = qualification.id
 
-        if (qualification.addActivity(activity)) {
-            if (subjectViewModel.saveActivity(activity, qualification.id)) {
+        subjectViewModel.saveActivity(activity, object : ApiCallback<Activity> {
+            override fun onFail(exception: Throwable) {
+                return
+            }
+
+            override fun onSuccess(result: Activity?) {
                 dismiss()
                 findNavController().navigate(R.id.listSubjectsFragment)
             }
-        }
+        })
+
+
+
     }
 
 

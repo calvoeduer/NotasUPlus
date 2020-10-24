@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.parcial1.R
 import com.example.parcial1.model.Subject
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.viewmodel.SubjectViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_register_subject.*
@@ -63,15 +65,31 @@ class RegisterSubjectFragment : Fragment() {
 
     private fun saveSubject() {
 
+        registrar_button.isEnabled = false
+        registrar_button.isClickable = false
+
         val codeText = code.editText?.text.toString()
         val nameText = name.editText?.text.toString()
 
         val subject = Subject(codeText, nameText)
 
-        if (subjectViewModel.saveSubject(subject)) {
-            code.editText?.text?.clear()
-            name.editText?.text?.clear()
-        }
+        subjectViewModel.saveSubject(subject, object : ApiCallback<Subject>{
+            override fun onFail(exception: Throwable) {
+                registrar_button.isEnabled = true
+                registrar_button.isClickable = true
+            }
+
+            override fun onSuccess(result: Subject?) {
+                code.editText?.text?.clear()
+                name.editText?.text?.clear()
+
+                registrar_button.isEnabled = true
+                registrar_button.isClickable = true
+
+                findNavController().navigate(R.id.listSubjectsFragment)
+            }
+        })
+
 
 
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment.STYLE_NORMAL
 import androidx.navigation.fragment.findNavController
 import com.example.parcial1.R
 import com.example.parcial1.model.Activity
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.viewmodel.SubjectViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_edit_activity.*
@@ -70,9 +71,15 @@ class EditActivityFragment : Fragment() {
         activity.note = noteText
         activity.percent = percentText
 
-        if (subjectViewModel.updateActivity(activity)) {
+        subjectViewModel.updateActivity(activity, object : ApiCallback<Activity> {
+            override fun onFail(exception: Throwable) {
+                return
+            }
 
-            findNavController().navigate(R.id.listSubjectsFragment)
-        }
+            override fun onSuccess(result: Activity?) {
+
+                findNavController().navigate(R.id.listSubjectsFragment)
+            }
+        })
     }
 }

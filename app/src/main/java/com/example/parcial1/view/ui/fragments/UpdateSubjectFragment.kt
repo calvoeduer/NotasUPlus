@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.parcial1.R
 import com.example.parcial1.model.Subject
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.viewmodel.SubjectViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_update_subject.*
@@ -46,14 +47,26 @@ class UpdateSubjectFragment : Fragment() {
         update_subject_button.setOnClickListener {
             if (subject_name.editText?.text?.isNotBlank()!!) {
                 subject = Subject(subject.code, subject_name.editText?.text.toString())
-                if (subjectViewModel.updateSubject(subject)) {
-                    findNavController().navigate(R.id.listSubjectsFragment)
-                }
+
+
+                subjectViewModel.updateSubject(subject, object : ApiCallback<Subject>{
+                    override fun onFail(exception: Throwable) {
+                        return
+                    }
+
+                    override fun onSuccess(result: Subject?) {
+                        findNavController().navigate(R.id.listSubjectsFragment)
+
+                    }
+                })
+
+
             }
         }
     }
 
-
+/*                    findNavController().navigate(R.id.listSubjectsFragment)
+*/
 
 
 }

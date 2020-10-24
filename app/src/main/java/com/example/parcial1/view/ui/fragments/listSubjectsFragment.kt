@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial1.R
 import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Subject
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.view.adapter.SubjectAdapter
 import com.example.parcial1.view.adapter.SubjectListener
 import com.example.parcial1.viewmodel.SubjectViewModel
@@ -69,8 +70,15 @@ class listSubjectsFragment : Fragment(), SubjectListener {
     }
 
     override fun onSubjectDeleteButtonTap(subject: Subject, position: Int) {
-      if (subjectViewModel.deleteSubject(subject.code))
-          subjectViewModel.refresh()
+        subjectViewModel.deleteSubject(subject.code, object : ApiCallback<Subject> {
+            override fun onFail(exception: Throwable) {
+                return
+            }
+
+            override fun onSuccess(result: Subject?) {
+                subjectViewModel.refresh()
+            }
+        })
     }
 
     override fun onUpdateSubjectButtontap(subject: Subject, index: Int) {

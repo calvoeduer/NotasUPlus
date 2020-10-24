@@ -1,56 +1,31 @@
 package com.example.parcial1.model
 
 import androidx.annotation.IntRange
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 private  const val MAX_PERCENT= 1.0;
 class Qualification : Serializable{
-
+    @SerializedName("id")
     var id : Int = 0
 
     @IntRange(from = 1, to = 3)
+    @SerializedName("cort")
     var cort: Int =1
-
+    @SerializedName("activities")
     var activities : ArrayList<Activity> = ArrayList()
-
-    private val totalParcial: Float
-        get() {
-            if (activities.size == 0) {
-                return 0.0F
-            }
-            return activities.map { a -> a.percent * a.note }.reduce { acc, fl -> acc + fl }
-        }
-
-    val total: Float
-        get() {
-            return totalParcial * totalPercent
-        }
-    private val totalPercent: Float
-        get() {
-            return when (cort) {
-                1 -> 0.3F
-                2 -> 0.3F
-                3 -> 0.4F
-                else -> 0.0F
-            }
-        }
-
-    val totalActivitiesPercent: Float
-        get() {
-            if (activities.size == 0) {
-                return 0.0F
-            }
-            return activities.map { a -> a.percent }.reduce { acc, fl -> acc + fl }
-        }
+    @SerializedName("totalParcial")
+    private val totalParcial: Float = 0.0F
+    @SerializedName("total")
+    val total: Float = 0.0F
+    @SerializedName("totalPercent")
+    private val totalPercent: Float = 0.0F
+    @SerializedName("totalActivitiesPercent")
+    var totalActivitiesPercent: Float = 0.0F
 
 
-    fun addActivity(activity: Activity): Boolean {
-        if (totalActivitiesPercent + activity.percent > MAX_PERCENT)
-            return false
 
-        activities.add(activity)
-        return true
-    }
+
 
 
 }

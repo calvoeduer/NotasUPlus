@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial1.R
 import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Subject
+import com.example.parcial1.network.ApiCallback
 import com.example.parcial1.view.adapter.ActivityAdapter
 import com.example.parcial1.view.adapter.ActivityListener
 import com.example.parcial1.viewmodel.SubjectViewModel
@@ -108,14 +109,22 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onActivityDeleteButtonTap(activity: Activity, position: Int) {
-        if (subjectViewModel.deleteActivity(activity.id)) {
-            val qualification = subject.qualifications[currentCort - 1]
-            qualification.activities.removeIf { it.id == activity.id }
-            activityAdapter.updateData(qualification.activities)
-            porcentaje_completo.text =
-                "Porcentaje completo: " + qualification.totalActivitiesPercent * 100
+       subjectViewModel.deleteActivity(activity.id, object : ApiCallback<Activity>{
+           override fun onFail(exception: Throwable) {
+               return
+           }
 
-        }
+           override fun onSuccess(result: Activity?) {
+               if (result != null){
+                   val qualification = subject.qualifications[currentCort -1]
+                   qualification.activities.removeIf { it.id == activity.id }
+                   activityAdapter.updateData(qualification.activities)
+
+                   qualification.totalActivitiesPercent -= result.percent
+                   porcentaje_completo.text = "Porcentaje completo: " + qualification.totalActivitiesPercent * 100
+               }
+           }
+       })
 
 
     }

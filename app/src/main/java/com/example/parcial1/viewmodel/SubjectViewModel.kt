@@ -6,43 +6,53 @@ import androidx.lifecycle.ViewModel
 import com.example.parcial1.data.QualificationDatabase
 import com.example.parcial1.model.Activity
 import com.example.parcial1.model.Subject
+import com.example.parcial1.network.ApiCallback
+import com.example.parcial1.network.QualificationsService
 
 class SubjectViewModel (context: Context): ViewModel() {
 
-    private val qualificationDatabase = QualificationDatabase(context)
+    private val qualificationService = QualificationsService()
     var subjects: MutableLiveData<List<Subject>> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
 
-    fun saveSubject(subject: Subject): Boolean {
-        return qualificationDatabase.saveSubject(subject)
+    fun saveSubject(subject: Subject, apiCallback: ApiCallback<Subject>) {
+      qualificationService.saveSubjects(subject, apiCallback)
     }
 
-    fun saveActivity(activity: Activity, qualificationId: Int): Boolean {
-        return qualificationDatabase.saveActivity(activity, qualificationId)
+    fun saveActivity(activity: Activity, apiCallback: ApiCallback<Activity>) {
+        qualificationService.saveActivity(activity, apiCallback)
     }
 
-    fun updateActivity(activity: Activity): Boolean {
-        return qualificationDatabase.updateActivity(activity)
+    fun updateActivity(activity: Activity, apiCallback: ApiCallback<Activity>) {
+       qualificationService.updateActivity(activity, apiCallback)
     }
 
-    fun updateSubject(subject: Subject): Boolean {
-        return qualificationDatabase.updateSubject(subject)
+    fun updateSubject(subject: Subject, apiCallback: ApiCallback<Subject>) {
+       qualificationService.updateSubject(subject, apiCallback)
     }
 
-    fun deleteActivity(activityCode: Int): Boolean {
-        return qualificationDatabase.deleteActivity(activityCode)
+    fun deleteActivity(activityCode: Int, apiCallback: ApiCallback<Activity>){
+        qualificationService.deleteActivity(activityCode, apiCallback)
     }
-    fun deleteSubject(subjectCode: String): Boolean{
-        return qualificationDatabase.deleteSubject(subjectCode)
+    fun deleteSubject(subjectCode: String, apiCallback: ApiCallback<Subject>){
+        qualificationService.deleteSubject(subjectCode, apiCallback)
     }
 
-    private fun getSubjects(): ArrayList<Subject> {
-        return qualificationDatabase.getSubjects()
+    private fun getSubjects() {
+        qualificationService.getSubjects(object : ApiCallback<List<Subject>>{
+            override fun onSuccess(result: List<Subject>?) {
+                subjects.postValue(result)
+                isLoading.value = true
+            }
+
+            override fun onFail(exception: Throwable) {
+                isLoading.value = true
+            }
+        })
     }
 
     fun refresh() {
-        subjects.postValue(getSubjects())
-        isLoading.value = true
+        getSubjects()
     }
 
 }
